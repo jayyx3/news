@@ -1,0 +1,37 @@
+Prototype QA Tool for French News Transitions
+
+Overview
+to build a Reduced Scope Prototype (RSP) of a QA tool that evaluates short French transition phrases between news paragraphs. The prototype will validate feasibility before awarding a larger follow-on project (dataset restructuring, model fine-tuning, full integration).
+
+Objective
+Build a prototype QA engine that can:
+Detect thematic cohesion between a transition and the following paragraph.
+Flag root/lemma repetition across the same article.
+Enforce the five-word limit and concluding placement rule.
+Produce clear, explainable results in a Streamlit UI.
+
+Scope of Work
+1. Rule Checks
+Deterministic checks: word count ≤ 5; concluding transitions only in final position.
+2. Repetition Detection
+Use a French pipeline (e.g., spaCy fr, Stanza, TreeTagger) for lemmatization; track lemma/root repetition article-wide.
+3. Thematic Cohesion
+Use sentence-transformer embeddings (French-native or multilingual) to score semantic similarity:
+Transition ↔ next paragraph (should be higher).
+Transition ↔ previous paragraph (should be lower).
+4. Results & Reporting (Streamlit-first)
+Primary output is a Streamlit app that displays:
+A results table (e.g., columns: article_id, para_idx, transition_text, per-rule pass/fail, failure_reason, triggered_rule, similarity_next, similarity_prev).
+Summary stats: overall compliance %, most repeated lemmas, most common failure types.
+provide download buttons to export the same table as CSV/HTML.
+
+Deliverables
+Working Streamlit app (must run locally and on Replit).
+Code + brief README (how to run, model choices, thresholds).
+CSV/HTML export of the Streamlit table.
+
+We’ll provide a ~200-transition test set; your app must process it.
+Please follow to see uploaded sample data sets:
+Please also refer to the pdf attached for an explanation of the structure of the dataset in particular where to find the transitions generated that need to be analysed by the qa engine.
+
+Submissions must include explanations for failures (reason + triggered rule) within Streamlit.
